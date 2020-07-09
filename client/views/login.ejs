@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Business Casual - Start Bootstrap Theme</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/business-casual.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <h1 class="site-heading text-center text-white d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">Wish Your Comfort</span>
+    <span class="site-heading-lower">Urban Oasis</span>
+  </h1>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+
+    <div class="container">
+
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Welcome to Urban Oasis</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/about">
+              About</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/products">Products</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/recipe">Recipe</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/songs">Recommended Songs</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/notice">Notices</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="login">
+    <form class="login-container" enctype = "multipart/form-data" method = 'POST' action = "/login" id = 'upload_form'>
+        <h2>Are you are Administer?</h2>
+        <br/>
+        <div class="User">
+          <input type="text" class="loginUser" placeholder = "Id">
+        </div>
+        <br/>
+        <div class="Pass">
+          <input type="password" class="loginPass" placeholder = "Password">
+        </div>
+        <br/>
+        <button style = "background-color: white; border: lightblue 1px solid; color : rgb(58, 157, 190); padding: 3px 7px;" type="submit" id="submit-btn" class='btn-deactive'>
+          Submit
+        </button>
+    </form>
+  </section>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script type = "text/javaScript">
+
+    const inpForm = document.getElementById('upload_form');
+    const inpUser = document.querySelector('.loginUser')
+    const inpPass = document.querySelector('.loginPass')
+    const inpSub = document.getElementById('submit-btn')
+    
+    inpSub.addEventListener('click',function(){
+      
+      const form = {
+        username : inpUser.value,
+        password : inpPass.value
+      }
+
+      console.log(form)
+      var formData = new FormData();
+      var xhr = new XMLHttpRequest()
+      const requestData = `username=${form.username}&password=${form.password}`
+
+      // video를 입력하지 않으면 alert 띄우고  redirect
+      if( inpUser.value === ''){
+        alert("Write in Your Id")
+        event.preventDefault()
+        return false;
+      }else if( inpPass.value === ''){
+        alert("Write in Your password")
+        event.preventDefault()
+        return false;
+      }
+
+      // response 처리하기
+      xhr.onload = function(){
+        
+        console.log(this.responseText)
+
+          if(xhr.status === 200){
+              console.log("Server responded appropriately with 200 status")
+              alert("login Success")
+              window.location.href = "/"
+          }
+          else if( xhr.status === 401){
+              alert("Login Failed")
+              event.preventDefault()
+              return;
+          }
+          else if( xhr.status === 401){
+              alert("No user found")
+              event.preventDefault()
+              return;
+          }
+      }
+
+      xhr.open('POST','/login', true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.send(requestData);
+
+      console.log(requestData)
+      event.preventDefault();
+
+      return ;
+    })
+
+  </script>
+
+
+</body>
+
+</html>
