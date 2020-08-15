@@ -110,11 +110,11 @@ router.post('/login', (req, res) => {
             }else{
                 // password doesn't match
                 console.log("Wrong password")
-                res.status(400)
+                res.status(401).json({'message' : 'passworderror'})
             }
         }else{
             console.log("No user")
-            res.status(401)
+            res.status(402).json({ 'message' : 'usererror'})
         }
     })
 })

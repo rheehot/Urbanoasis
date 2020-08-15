@@ -57,6 +57,115 @@ p {
   margin-bottom: 5rem;
 }
 
+
+@media (min-width: 992px) {
+  #mainNav .navbar-nav .nav-item .nav-link {
+    font-size: 0.9rem;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  #mainNav .navbar-nav .nav-item.active .nav-link:hover {
+    color: rgba(26, 175, 235, 0.65);
+  }
+}
+
+/* about page image slider_ coffee  */
+
+.carousel-container{
+  max-width: 500px;
+  max-height: 500px;
+  border : 10px solid white;
+  margin: 30px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.carousel-container #prevBtn{
+  position: absolute;
+  top:50%;
+  left:5%;
+  color: lightslategray;
+  z-index: 2;
+  font-size: 1.5rem;
+  transition : color 1s ease-in-out;
+}
+
+.carousel-container #nextBtn{
+  position: absolute;
+  top:50%;
+  right:5%;
+  color: lightslategray;
+  z-index: 2;
+  font-size: 1.5rem;
+  transition : color 0.5s ease-in-out;
+}
+
+.carousel-container #nextBtn:hover , .carousel-container #prevBtn:hover{
+  color: lightseagreen;
+}
+
+
+@keyframes zoom{
+  0%{ transform: scale(2); opacity : 0}
+  100%{ transform: scale(1); opacity : 1}
+}
+
+.carousel-container .carousel-slides .carousel-slide{
+  display: none;
+  position: relative;
+}
+
+.carousel-container .carousel-slides .carousel-slide img{
+  max-width: 100%;
+  display: block;
+  animation : zoom 1s ease;
+}
+
+
+.carousel-container .carousel-slides .carousel-slide.active {
+  display: block;
+}
+
+/* about page css wash  */
+.carousel-container_wash{
+  max-width: 500px;
+  height: 80vh;
+  margin: 30px auto;
+  overflow: hidden;
+}
+
+@keyframes opacity_appear{
+  0%{ transform: scale(0.5); opacity : 0.2}
+  100%{ transform: scale(1); opacity : 1}
+}
+
+.carousel-slides_wash{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carousel-container_wash .carousel-slide_wash{
+  display: none;
+}
+
+.carousel-container_wash .carousel-slide_wash.active {
+  display: block;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  max-height: 100%;
+  margin: auto;
+  animation: opacity_appear 1s ease-in-out;
+}
+
+
+/* about page css end  */
+
 .section-heading {
   text-transform: uppercase;
   width: 100%;
@@ -73,10 +182,7 @@ p {
   font-size: 4vw;
   font-weight: 100;
   width: 100%;
-  
 }
-
-
 
 .section-heading-line {
   text-transform: uppercase;
@@ -153,7 +259,8 @@ p {
 
 @media (min-width: 992px) {
   .intro .intro-img {
-    width: 75%;
+    width: 55%;
+    height: 80vh ;
     float: right;
   }
   .intro .intro-text {
@@ -175,17 +282,14 @@ p {
     width: 45%;
   }
 }
-
 .cta {
   padding-top: 5rem;
   padding-bottom: 5rem;
   background-color: rgba(115, 196, 228, 0.65);
 }
-
 .cta .col-xl-9{
   padding: 0 5px;
 }
-
 .cta .cta-inner {
   position: relative;
   padding: 3rem;
@@ -212,28 +316,99 @@ p {
   gap: 2px;
 }
 
-
-
 /* Daily Notice Div */
 .cta .cta-inner-notice div.notice-item {
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  border: 5px solid lightcyan;
+  justify-content: space-between;
+  border: 5px solid lightblue;
 }
 
-/* Daily Notice Img  */
+.cta .cta-inner-notice div.notice-item span.notice-date {
+  color: lightseagreen;
+  margin-top: 10px;
+}
 .cta .cta-inner-notice div.notice-item img.notice-img {
-  width: 100%;
+  margin-top : 2vh;
+  margin-bottom: 2vh;
+  width:90%;
   height: 30vh;
 }
+.cta .cta-inner-notice div.notice-item video.notice-img {
+  margin-top : 2vh;
+  margin-bottom: 2vh;
+  width: 90%;
+  height: 30vh;
+}
+.cta .cta-inner-notice div.notice-item p.notice-content {
+  margin-bottom: 0px;
+  word-break: break-all;
+}
+.cta .cta-inner-notice div.notice-item div.notice-buttons {
+  display: flex;
+}
+.cta .cta-inner-notice div.notice-item button{
+  color: lightcoral;
+  background-color: lightblue;
+  border-radius: 5px;
+  border : 1px solid white;
+  font-size: 0.7rem;
+  padding: 0.5vh 1vh;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
 
-/* for phone */
-@media (min-width: 992px){
-
+/* edit page 전용 repeat */
+/* edit page */
+.cta .cta-inner-notice form.notice-item-edit {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 5px solid lightblue;
+  grid-column-start: span 2;
+}
+.cta .cta-inner-notice form.notice-item-edit span.notice-date {
+  color: lightseagreen;
+  margin-top: 10px;
+}
+.cta .cta-inner-notice form.notice-item-edit img.notice-img {
+  margin-top : 2vh;
+  margin-bottom: 2vh;
+  width: 60%;
+  height: 30vh;
+}
+.cta .cta-inner-notice form.notice-item-edit video.notice-img {
+  margin-top : 2vh;
+  margin-bottom: 2vh;
+  width: 60%;
+  height: 30vh;
+}
+.cta .cta-inner-notice form.notice-item-edit textarea.notice-content {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  word-break: break-all;
+  height: 20%;
+  width: 50%;
+  text-align: center;
+}
+.cta .cta-inner-notice form.notice-item-edit form.notice-buttons {
+  display: flex;
+}
+.cta .cta-inner-notice form.notice-item-edit button{
+  color: lightcoral;
+  background-color: lightblue;
+  border-radius: 5px;
+  border : 1px solid white;
+  font-size: 0.7rem;
+  padding: 0.5vh 1vh;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .cta .cta-inner:before {
@@ -248,8 +423,23 @@ p {
   z-index: -1;
 }
 
+
+@media (min-width: 315px) and (max-width : 430px) {
+  .cta .cta-inner-notice {
+    position: relative;
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    display: grid;
+    grid-template-columns: repeat( 1 , 1fr );
+    gap: 2px;
+  }
+}
+
 @media (min-width: 992px) {
   .about-heading .about-heading-img {
+    width: 100%;
+    height: 65vh;
     position: relative;
     z-index: 0;
   }

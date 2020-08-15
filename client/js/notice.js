@@ -1,4 +1,3 @@
-
 // ------ 1. Regular Notice -------- //
 // Edit 버튼들 
 var Edit_Buttons = document.querySelectorAll('.ml-edit')
@@ -11,7 +10,6 @@ var Edit_Inputs = document.querySelectorAll('.ml-input')
 // Input Save 버튼
 var Edit_Saves  = document.querySelectorAll('.ml-save')
 
-
 for(var i = 0 ; i < Edit_Buttons.length ; i++){
 
     let CurrentRow = i;
@@ -20,18 +18,15 @@ for(var i = 0 ; i < Edit_Buttons.length ; i++){
     let Btn        = Edit_Buttons[i]
     let Cancel     = Edit_Cancels[i]
     let Save       = Edit_Saves[i]
-    
+
     // Edit 버튼을 클릭하면 , Edit_cancel 과 Textarea는 나타나게 하고, 기존의 Text 내용은 숨긴다 
     Btn.addEventListener('click', function(){
-        
         Input.value            = Content.innerHTML
-
         Input.style.display    = "block"
         Cancel.style.display   = "block"
         Save.style.display     = "block"
         Btn.style.display      = "none"
         Content.style.display  = "none"
-        
     })
     
     // Edit-Cancel 버튼을 누르면, 원상복귀시킨다
@@ -56,8 +51,6 @@ for(var i = 0 ; i < Edit_Buttons.length ; i++){
 
         //해당 내용과, 어떤 내용의 글이 수정되는지 확인하기 위해, 각 요일에 대해서 row num을 부여할 것이고, 그것을 위해 i 라는 인자를 전달한다 
         const requestData = `input=${Input.value}&num=${CurrentRow}`
-        
-        
 
         xhr.onload = function(){
             
@@ -259,11 +252,11 @@ inpForm.onsubmit = function(){
     }
 
     console.log(inpImage.files[0])
-
+    
+    formData.append('upload', inpDate)
+    formData.append('upload', inpText.value)
     formData.append('upload', inpVideo.files[0])
     formData.append('upload', inpImage.files[0])
-    formData.append('upload', inpText.value)
-    formData.append('upload', inpDate)
 
     const form = {
         Video : inpVideo.files[0],
@@ -295,3 +288,9 @@ inpForm.onsubmit = function(){
 
     event.preventDefault();
 }
+
+// ----- 5. Daily Notice Edit ------ //
+const EditBtn = document.getElementsByClassName("notice-edit")
+// EditBtn.addEventListener("click", function(){
+//     event.preventDefault();
+// })

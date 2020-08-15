@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Business Casual - Start Bootstrap Theme</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/business-casual.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <h1 class="site-heading text-center text-white d-none d-lg-block">
+    <span class="site-heading-upper text-primary mb-3">Wish Your Comfort</span>
+    <span class="site-heading-lower">Urban Oasis</span>
+  </h1>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+
+    <div class="container">
+
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Welcome to Urban Oasis</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-section about-heading">
+    <div class="container">
+
+      <% if( member.token ){ %> 
+        <section class="page-section cta">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-9 mx-auto">
+                
+                <div class="cta-inner-line text-center rounded">
+                  <h2 class="section-heading-line mb-4">
+                    <span class="section-heading-upper">Daliy Notices</span>
+                    <span id = "DailyAdd" class="section-heading-add">
+                      Add Notice
+                    </span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-9 mx-auto">
+                <div class="cta-inner-notice text-center rounded">
+                    <% files.forEach((file)=>{%>
+                        <% if( file._id == wantfile_id) { %>
+                            <% if(file.isImage){ %>
+                                <form id = "fileEdit" class="notice-item-edit" method = "POST" action ="/notice_edit/update/<%= file.filename %>">
+                                        <span class = "notice-date">Date : <%- file.uploadDate %></span>
+                                        <img class = "notice-img" src= "file/<%= file.filename %>" alt="">
+                                        <textarea type = "text" name = "newtext"v class = "notice-content"><%- file.metadata.Text %></textarea>
+                                        <div class="notice-buttons">
+                                            <form method = "GET" action ="/notice">
+                                            <button class="notice-button">
+                                                Cancel
+                                            </button>
+                                            </form>
+                                            <button class="notice-button">
+                                                Complete
+                                            </button>
+                                        </div>
+                                </form>
+                                <% } else{%>
+                                <form id = "fileEdit" class="notice-item-edit"method = "POST" action ="/notice_edit/update/<%= file.filename %>">
+                                        <span class = "no ice-date">Date : <%- file.uploadDate %></span>
+                                        <video controls autoplay class = "notice-img" src ="file/<%= file.filename %>" >
+                                        </video>
+                                        <textarea type = "text" name = "newtext" class = "notice-content"><%- file.metadata.Text %> </textarea>
+                                        <div class="notice-buttons">
+                                        <form method = "GET" action ="/notice">
+                                            <button class="notice-button">
+                                            Cancel
+                                            </button>
+                                        </form>
+                                            <button class="notice-button">
+                                            Complete
+                                            </button>
+                                        </div>
+                                </form>
+                            <%} %>
+                        <% } %>
+                      <% }); %>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  <!-- 
+        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="../img/urban1.jpg" alt="">
+        <div class="about-heading-content">
+          <div class="row">
+            <div class="col-xl-9 col-lg-10 mx-auto">
+              <div class="bg-faded rounded p-5">
+                <h2 class="section-heading mb-4">
+                  <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
+                  <span class="section-heading-lower">About Our Cafe</span>
+                </h2>
+                <p>Hello</p>
+                <p class="mb-0">We guarantee that you will fall in <em>lust</em> with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <br/>
+        <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="img/wash1.jpg" alt="">
+        <div class="about-heading-content">
+          <div class="row">
+            <div class="col-xl-9 col-lg-10 mx-auto">
+              <div class="bg-faded rounded p-5">
+                <h2 class="section-heading mb-4">
+                  <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
+                  <span class="section-heading-lower">About Our Cafe</span>
+                </h2>
+                <p>Founded in 1987 by the Hernandez brothers, our establishment has been serving up rich coffee sourced from artisan farmers in various regions of South and Central America. We are dedicated to travelling the world, finding the best coffee, and bringing back to you here in our cafe.</p>
+                <p class="mb-0">We guarantee that you will fall in <em>lust</em> with our decadent blends the moment you walk inside until you finish your last sip. Join us for your daily routine, an outing with friends, or simply just to enjoy some alone time.</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+  
+      </div>
+    </section>
+    <!-- notice 입력을 위한 모델창 -->
+    <div class="modal hidden">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+          <form class = "form" enctype = "multipart/form-data" method = 'POST' action = "/notice" id = 'upload_form'>
+              <h3 class = "modal-title">New Notice</h3>
+              
+              <label for="inpVideo">
+                Choose Video
+                <input type="file" value = "Choose Video" name = "upload" id = "inpVideo" accept ="video/mp4" />
+              </label>
+              <label for="inpImage">
+                  Choose Image
+                  <input type="file" value = "Choose Image" name = "upload" id = "inpImage" accept ="image/gif, image/jpeg, image/png" />
+                </label>
+              <div class="image-preview" id ="image-preview">
+                <img src="" class="image-preview__image" name = "upload">
+                <br/>
+                <video id="video-element" controls autoplay muted>
+                  <source type="video/mp4">
+                  </video>
+                  <span class="image-preview__default-text">Image/Video Preview
+                  </span>
+                </div>
+                
+                <textarea type = "text" name = "upload" id = "inpText" ></textarea>
+  <!-- 
+          <div class="video-preview">
+              </div> -->
+              <button type="submit" id="submit-btn" class='btn-deactive'>Submit
+              </button>
+          </form>
+      </div>
+  </div> 
+        <% }else{ %>
+          <section class="login" style = "text-align: center; height: 30vh;">
+            <h1 style = "color: white; margin-top: 30px">Please login</h1>
+          </section> 
+      <%} %>
+
+  <footer class="footer text-faded text-center py-5">
+    <div class="footer-container">
+      <p class="m-0 small">Web Developer &copy; BUM JUN OH </p><br/>
+      <p class="m-0 small">KakaotalkID : dhsys112</p>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/notice.js"></script>
+  
+
+</body>
+
+</html>

@@ -17,11 +17,11 @@ const methodOverride = require('method-override')
 app.use(express.static(__dirname +'/../client/'))
 
 // MiddlewarebodyParser: client가 보낸 정보를 Server가 받게 한다
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(methodOverride('_method')) 
 

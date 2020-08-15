@@ -133,12 +133,12 @@
               alert("login Success")
               window.location.href = "/"
           }
-          else if( xhr.status === 401){
-              alert("Login Failed")
+          else if( xhr.status == 401){
+              alert("Check Your Password")
               event.preventDefault()
               return;
           }
-          else if( xhr.status === 401){
+          else if( xhr.status == 402){
               alert("No user found")
               event.preventDefault()
               return;

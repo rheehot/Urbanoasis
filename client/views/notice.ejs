@@ -240,28 +240,55 @@
                     <span id = "DailyAdd" class="section-heading-add">
                       Add Notice
                     </span>
-                    
                   </h2>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-xl-9 mx-auto">
-                
                 <div class="cta-inner-notice text-center rounded">
-                  <div class="notice-item">
-                    <span class = "notice-date">Date</span>
-                    <img class = "notice-img" src="../img/urban1.jpg" alt="">
-                    <p class = "notice-content">케익 식재료 왔습니다</p>
-  
+                    <% files.forEach((file)=>{%>
+                      <% if(file.isImage){ %>
+                        <div class="notice-item">
+                          <span class = "notice-date">Date : <%- file.uploadDate %></span>
+                          <img class = "notice-img" src= "file/<%= file.filename %>" alt="">
+                          <p class = "notice-content"><%- file.metadata.Text %> </p>
+                          <div class="notice-buttons">
+                            <form method = "POST" action ="/file/<%= file._id %>?_method=DELETE">
+                              <button class="notice-delete">
+                                Delete
+                              </button>
+                            </form>
+                            <form method = "GET" action ="/notice_edit/<%= file._id %>">
+                              <button class="notice-edit">
+                                Edit
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                        <% } else{%>
+                          <div class="notice-item">
+                            <span class = "notice-date">Date : <%- file.uploadDate %></span>
+                            <video controls autoplay class = "notice-img" src ="file/<%= file.filename %>" >
+                            </video>
+                            <p class = "notice-content"><%- file.metadata.Text %> </p>
+                            <div class="notice-buttons">
+                              <form method = "POST" action ="/file/<%= file._id %>?_method=DELETE">
+                                <button class="notice-delete">
+                                  Delete
+                                </button>
+                              </form>
+                              <form method = "GET" action ="/notice_edit/<%= file._id %>">
+                                <button class="notice-edit">
+                                  Edit
+                                </button>
+                              </form>
+                            </div>
+                          </div>
+                        <%} %>
+                      <% }); %>
                   </div>
-                  <div class="notice-item">
-                    <span class = "notice-date">Date</span>
-                    <img class = "notice-img" src="../img/urban1.jpg" alt="">
-                    <p class = "notice-content">케익 식재료 왔습니다</p>
-  
-                  </div>
-                </div>
+                  
               </div>
             </div>
           </div>
@@ -302,8 +329,6 @@
           </div>
         </div> -->
   
-        
-  
       </div>
     </section>
     <!-- notice 입력을 위한 모델창 -->
@@ -312,28 +337,28 @@
       <div class="modal__content">
           <form class = "form" enctype = "multipart/form-data" method = 'POST' action = "/notice" id = 'upload_form'>
               <h3 class = "modal-title">New Notice</h3>
+              
               <label for="inpVideo">
-                  Choose Video
-                  <input type="file" value = "Choose Video" name = "upload" id = "inpVideo" accept ="video/mp4" />
+                Choose Video
+                <input type="file" value = "Choose Video" name = "upload" id = "inpVideo" accept ="video/mp4" />
               </label>
               <label for="inpImage">
                   Choose Image
                   <input type="file" value = "Choose Image" name = "upload" id = "inpImage" accept ="image/gif, image/jpeg, image/png" />
-              </label>
+                </label>
               <div class="image-preview" id ="image-preview">
-                  <img src="" class="image-preview__image" name = "upload">
-                  <br/>
-                  <video id="video-element" controls autoplay muted>
-                    <source type="video/mp4">
-                </video>
+                <img src="" class="image-preview__image" name = "upload">
+                <br/>
+                <video id="video-element" controls autoplay muted>
+                  <source type="video/mp4">
+                  </video>
                   <span class="image-preview__default-text">Image/Video Preview
                   </span>
-              </div>
+                </div>
+                <textarea type = "text" name = "upload" id = "inpText" ></textarea>
   <!-- 
-              <div class="video-preview">
-                  
+          <div class="video-preview">
               </div> -->
-                <textarea type="text" name = "upload" id = "inpText" ></textarea>
               <button type="submit" id="submit-btn" class='btn-deactive'>Submit
               </button>
           </form>
@@ -344,7 +369,6 @@
             <h1 style = "color: white; margin-top: 30px">Please login</h1>
           </section> 
       <%} %>
-      
 
   <footer class="footer text-faded text-center py-5">
     <div class="footer-container">
